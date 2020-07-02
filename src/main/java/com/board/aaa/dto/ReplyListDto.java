@@ -10,6 +10,6 @@ public class ReplyListDto {
     private String bno;
     private String rcontent;
     private String rwriter;
-    private Date r_regdate;
+    private String r_regdate;
 
 }

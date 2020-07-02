@@ -16,6 +16,7 @@
     <select id="selectReply" resultType="com.board.aaa.dto.ReplyListDto">
         select * from reply
         where bno=#{bno}
+        order by r_regdate
     </select>
 
     <update id="updateReply">

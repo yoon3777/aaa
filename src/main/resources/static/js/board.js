@@ -85,40 +85,43 @@ $(document).ready(function () {
     });
 
     //댓글 수정
-    $('#btn-reply-update').on('click', function () {
+    $('.btn-reply-update').on('click', function () {
         var data = {
-            rno : $('#rno').val(),
+            bno : $('#bno').val(),
+            rno : $(this).attr("value"),
             rwriter : $('#rwriter').val(),
-            rcontent : $('#rcontent').val(),
-        }
+            rcontent : $('#rcontent').val()
+        };
         console.log(data);
 
         $.ajax({
             type : 'POST',
             url : '/rest/reply/update',
+            dataType :'text',
             data : data
         }).done(function () {
             alert("댓글 수정 완료");
-            window.location.href = "/";
+            window.location.replace(document.location.href);
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     });
 
     //댓글 삭제
-    $('#btn-reply-delete').on('click', function () {
+    $('.btn-reply-delete').on('click', function () {
         var data = {
-            rno : $('#bno').val()
+            rno : $(this).attr("data-rno")
         };
         console.log(data);
 
         $.ajax({
             type : 'POST',
             url : '/rest/reply/delete',
+            dataType :'text',
             data : data
         }).done(function () {
             alert("댓글 삭제 완료");
-            window.location.href = "/";
+            window.location.replace(document.location.href);
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
