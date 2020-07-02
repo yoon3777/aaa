@@ -10,4 +10,5 @@ public class WriteDto {
     private String content;
     private String writer;
     private Date regdate;
+    private String image;
 }

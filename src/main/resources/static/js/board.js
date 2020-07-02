@@ -1,21 +1,26 @@
 $(document).ready(function () {
-    //작성 페이지 작성버튼 클릭
+    //게시글 등록
    $('#btn-write').on('click', function () {
-        var data = {
-            title : $('#title').val(),
-            content : $('#content').val(),
-            writer : $('#writer').val()
-        };
+        var writeData = $('#writedata')[0];
+        var data = new FormData(writeData);
 
         console.log(data);
 
        $.ajax({
            type : 'POST',
            url : '/rest/write',
+           enctype: 'multipart/form-data',
+           processData: false,
+           contentType: false,
+           cache: false,
            data : data
-       }).done(function () {
-           alert("게시글 등록 완료");
-           window.location.href = "/";
+       }).done(function (data) {
+           if(data == 0) {
+               alert("게시글 등록 완료");
+               window.location.href = "/";
+           }else {
+               alert("제목 중복입니다.");
+           }
        }).fail(function (error) {
            alert(JSON.stringify(error));
        });

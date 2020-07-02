@@ -42,4 +42,12 @@ public class BoardService {
     public void delete(DeleteDto deleteDto) throws Exception {
         boardMapper.delete(deleteDto);
     }
+
+    //제목 중복체크
+    public int check(CheckDto checkDto) throws Exception{
+        int result = boardMapper.check(checkDto);
+        System.out.println(result);
+        return result;
+    }
+
 }

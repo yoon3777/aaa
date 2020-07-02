@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 
 @RestController
 public class BoardRestController {
@@ -18,10 +21,25 @@ public class BoardRestController {
     @Autowired
     ReplyService replyService;
 
+    public static String uploadpath = "D:\\aaa\\src\\main\\resources\\upload\\";
+
     //게시글 작성
     @PostMapping("/rest/write")
-    public void write(WriteDto writeDto) throws Exception {
+    public int write(WriteDto writeDto, MultipartFile file1) throws Exception {
+        ArrayList<ListDto> list = boardService.getList();
+        int n = 0;
+        for(ListDto a : list){
+            if (a.getTitle().equals(writeDto.getTitle())) {
+                System.out.println("제목 중복 O");
+                n=1;
+                return n;
+            }
+        }
+        System.out.println("제목 중복X");
+        writeDto.setImage(uploadpath + file1.getOriginalFilename());
         boardService.write(writeDto);
+        System.out.println("작성 Dto : " + writeDto.toString());
+        return n;
     }
 
     //게시글 수정

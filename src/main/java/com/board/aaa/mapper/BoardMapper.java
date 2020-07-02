@@ -18,4 +18,6 @@ public interface BoardMapper {
     public void update(UpdateDto updateDto) throws Exception;
     //글 삭제
     public void delete(DeleteDto deleteDto) throws Exception;
+    //제목 중복 체크
+    public int check(CheckDto checkDto) throws Exception;
 }

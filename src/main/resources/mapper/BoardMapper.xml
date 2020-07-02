@@ -6,6 +6,11 @@
 		SELECT * FROM BOARD order by bno desc
 	</select>
 
+	<select id="check" resultType="int">
+		select count(*) from board
+		where title=#{title}
+	</select>
+
 	<insert id="write">
 		insert into board values(
 		board_seq.nextval,
@@ -13,7 +18,8 @@
 		#{content},
 		#{writer},
 		sysdate,
-		0
+		0,
+		#{image}
 		)
 	</insert>
 
