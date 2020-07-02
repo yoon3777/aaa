@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //게시글 등록
    $('#btn-write').on('click', function () {
+
         var writeData = $('#writedata')[0];
         var data = new FormData(writeData);
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BoardController {
@@ -33,6 +34,7 @@ public class BoardController {
         model.addAttribute("boardList", boardService.getBoard(bno));
         boardService.count(bno);
         model.addAttribute("replyList", replyService.selectReply(bno));
+        System.out.println("이미지: " + boardService.getBoard(bno).toString());
         return "detail";
     }
     //게시글 수정 페이지

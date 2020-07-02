@@ -11,4 +11,5 @@ public class DetailDto {
     private String content;
     private String writer;
     private Date regdate;
+    private String image;
 }

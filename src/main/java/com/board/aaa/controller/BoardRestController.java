@@ -4,13 +4,13 @@ import com.board.aaa.dto.*;
 import com.board.aaa.service.BoardService;
 import com.board.aaa.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @RestController
@@ -21,11 +21,11 @@ public class BoardRestController {
     @Autowired
     ReplyService replyService;
 
-    public static String uploadpath = "D:\\aaa\\src\\main\\resources\\upload\\";
+    public static String uploadpath = "D:\\aaa\\src\\main\\resources\\upload";
 
     //게시글 작성
     @PostMapping("/rest/write")
-    public int write(WriteDto writeDto, MultipartFile file1) throws Exception {
+    public int write(WriteDto writeDto, MultipartFile file) throws Exception {
         ArrayList<ListDto> list = boardService.getList();
         int n = 0;
         for(ListDto a : list){
@@ -36,8 +36,14 @@ public class BoardRestController {
             }
         }
         System.out.println("제목 중복X");
-        writeDto.setImage(uploadpath + file1.getOriginalFilename());
-        boardService.write(writeDto);
+        try{
+            file.transferTo(new File(uploadpath, file.getOriginalFilename()));
+            writeDto.setImage(uploadpath + file.getOriginalFilename());
+            boardService.write(writeDto);
+        } catch (IllegalStateException | IOException e){
+            e.printStackTrace();
+        }
+
         System.out.println("작성 Dto : " + writeDto.toString());
         return n;
     }
