@@ -1,0 +1,18 @@
+{{>layout/header}}
+<h1>게시글 수정</h1>
+{{#boardList}}
+    <label for="title">글번호</label>
+    <input type="text" id="bno" name="bno" value="{{bno}}" readonly><br>
+    <label for="title">작성일자</label>
+    <input type="text" id="regdate" name="regdate" value="{{regdate}}" readonly><br>
+    <label for="writer">작성자</label>
+    <input type="text" id="writer" name="writer" value="{{writer}}" readonly><br>
+    <label for="title">제목</label>
+    <input type="text" id="title" name="title" value="{{title}}"><br>
+    <label for="content">내용</label>
+    <textarea id="content" name="content">{{content}}</textarea><br>
+    <button type="button" id="btn-update">수정</button>
+    <button type="button" id="btn-delete">삭제</button>
+    <button type="button" onclick="location.href='/detail/{{bno}}'">뒤로가기</button>
+{{/boardList}}
+{{>layout/footer}}
