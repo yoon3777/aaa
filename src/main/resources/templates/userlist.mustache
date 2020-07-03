@@ -1,0 +1,23 @@
+{{>layout/header}}
+<h1>게시판 목록</h1>
+<table calss="table table-horizontal" table-border>
+    <thead class="thead-strong">
+    <tr>
+    <th>회원번호</th>
+    <th>회원이름</th>
+    <th>회원유형</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#userList}}
+    <tr>
+        <td>{{userno}}</td>
+        <td>{{username}}</td>
+        <td>{{typename}}</td>
+    </tr>
+    </tbody>
+    {{/userList}}
+    </tbody>
+</table>
+<button type="button" onclick="location.href='/list'">뒤로가기</button>
+{{>layout/footer}}

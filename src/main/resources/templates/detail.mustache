@@ -1,36 +1,53 @@
 {{>layout/header}}
 <h1>게시글 상세페이지</h1>
 {{#boardList}}
-    <p>
-    <label for="title">글번호</label>
-    <input type="text" id="bno" name="bno" value="{{bno}}" readonly><br>
-    <label for="title">작성일자</label>
-    <input type="text" id="regdate" name="regdate" value="{{regdate}}" readonly><br>
-    <label for="writer">작성자</label>
-    <input type="text" id="writer" name="writer" value="{{writer}}" readonly><br>
-    <label for="title">제목</label>
-    <input type="text" id="title" name="title" value="{{title}}" readonly><br>
-    <label for="content">내용</label>
-    <textarea id="content" name="content" readonly>{{content}}</textarea><br>
-    <label for="title">파일</label>
-    <a href="">{{image}}</a><br>
-    <button type="button" onclick="location.href='/update/{{bno}}'">수정하기</button>
-    <button type="button" onclick="location.href='/'">뒤로가기</button><br><br>
-    </p>
-    {{#replyList}}
+    <table calss="table table-horizontal" table-border>
+        <thead class="thead-strong">
+        <tr>
+            <th>게시글 제목</th>
+            <th>캡스톤</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <tr>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+        </tbody>
+    </table><br>
+    <button type="button" id="c" name="c">추천하기</button>
+    <button type="button" onclick="location.href='/list'">뒤로가기</button>
+    {{/boardList}}
+<!--    <p>-->
+<!--    <label for="title">글번호</label>-->
+<!--    <input type="text" id="bno" name="bno" value="{bno}}" readonly><br>-->
+<!--    <label for="title">작성일자</label>-->
+<!--    <input type="text" id="regdate" name="regdate" value="{regdate}}" readonly><br>-->
+<!--    <label for="writer">작성자</label>-->
+<!--    <input type="text" id="writer" name="writer" value="{writer}}" readonly><br>-->
+<!--    <label for="title">제목</label>-->
+<!--    <input type="text" id="title" name="title" value="{title}}" readonly><br>-->
+<!--    <label for="content">내용</label>-->
+<!--    <textarea id="content" name="content" readonly>{content}}</textarea><br>-->
+<!--    <label for="title">파일</label>-->
+<!--    <a href="">{image}}</a><br>-->
+<!--    <button type="button" onclick="location.href='/update/{bno}}'">수정하기</button>-->
+<!--    <button type="button" onclick="location.href='/list'">뒤로가기</button><br><br>-->
+<!--    </p>-->
+<!--    {#replyList}}-->
 
-        <p><input type="hidden" value="{{rno}}">
-        댓글 작성 일자 : {{r_regdate}}<br>
-        작성자 : <input type="text" id="rwriter" name="rwriter" value="{{rwriter}}"><br>
-        댓글 내용 : <input type="text" id="rcontent" name="rcontent" value="{{rcontent}}"><br>
-        <button type="button" class="btn-reply-update" value="{{rno}}">댓글수정</button>
-        <button type="button" class="btn-reply-delete" data-rno="{{rno}}">댓글삭제</button><br>
-        </p>
+<!--        <p><input type="hidden" value="{rno}}">-->
+<!--        댓글 작성 일자 : {r_regdate}}<br>-->
+<!--        작성자 : <input type="text" id="rwriter" name="rwriter" value="{rwriter}}"><br>-->
+<!--        댓글 내용 : <input type="text" id="rcontent" name="rcontent" value="{rcontent}}"><br>-->
+<!--        <button type="button" class="btn-reply-update" value="{rno}}">댓글수정</button>-->
+<!--        <button type="button" class="btn-reply-delete" data-rno="{rno}}">댓글삭제</button><br>-->
+<!--        </p>-->
 
-    {{/replyList}}
-    <hr>
-    <p><label for="rwriter">작성자</label><input type="text" id="rwriter" name="rwriter"></p>
-    <p><label for="rcontent">댓글내용</label><textarea id="rcontent" name="rcontent"></textarea></p>
-    <p><button type="button" id="btn-reply">댓글작성</button> </p>
-{{/boardList}}
+<!--    {/replyList}}-->
+<!--    <hr>-->
+<!--    <p><label for="rwriter">작성자</label><input type="text" id="rwriter" name="rwriter"></p>-->
+<!--    <p><label for="rcontent">댓글내용</label><textarea id="rcontent" name="rcontent"></textarea></p>-->
+<!--    <p><button type="button" id="btn-reply">댓글작성</button> </p>-->
+<!--{/boardList}}-->
 {{>layout/footer}}

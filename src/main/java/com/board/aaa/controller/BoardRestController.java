@@ -3,12 +3,15 @@ package com.board.aaa.controller;
 import com.board.aaa.dto.*;
 import com.board.aaa.service.BoardService;
 import com.board.aaa.service.ReplyService;
+import com.board.aaa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,32 +23,43 @@ public class BoardRestController {
     BoardService boardService;
     @Autowired
     ReplyService replyService;
+    @Autowired
+    UserService userService;
 
-    public static String uploadpath = "D:\\aaa\\src\\main\\resources\\upload";
+//    public static String uploadpath = "C:\\upload";
+
+    //로그인확인
+    @PostMapping("/rest/login")
+    public void login(UserLoginDto userLoginDto, Model model, HttpSession httpSession) throws Exception {
+        UserLoginDto userInfo = userService.userLogin(userLoginDto);
+        System.out.println("유저정보 :" + userInfo.toString());
+        httpSession.setAttribute("userInfo",userInfo);
+
+    }
 
     //게시글 작성
     @PostMapping("/rest/write")
-    public int write(WriteDto writeDto, MultipartFile file) throws Exception {
-        ArrayList<ListDto> list = boardService.getList();
-        int n = 0;
-        for(ListDto a : list){
-            if (a.getTitle().equals(writeDto.getTitle())) {
-                System.out.println("제목 중복 O");
-                n=1;
-                return n;
-            }
-        }
-        System.out.println("제목 중복X");
-        try{
-            file.transferTo(new File(uploadpath, file.getOriginalFilename()));
-            writeDto.setImage(uploadpath + file.getOriginalFilename());
-            boardService.write(writeDto);
-        } catch (IllegalStateException | IOException e){
-            e.printStackTrace();
-        }
-
+    public void write(WriteDto writeDto) throws Exception {//, MultipartFile file
+//        ArrayList<ListDto> list = boardService.getList();
+//        int n = 0;
+//        for(ListDto a : list){
+//            if (a.getTitle().equals(writeDto.getTitle())) {
+//                System.out.println("제목 중복 O");
+//                n=1;
+//                return n;
+//            }
+//        }
+//        System.out.println("제목 중복X");
+//        try{
+//            file.transferTo(new File(uploadpath, file.getOriginalFilename()));
+//            writeDto.setImage(file.getOriginalFilename());//uploadpath +
+//
+//        } catch (IllegalStateException | IOException e){
+//            e.printStackTrace();
+//        }
+        boardService.write(writeDto);
         System.out.println("작성 Dto : " + writeDto.toString());
-        return n;
+//        return n;
     }
 
     //게시글 수정

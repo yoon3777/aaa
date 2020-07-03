@@ -19,7 +19,9 @@
 		#{writer},
 		sysdate,
 		0,
-		#{image}
+		0,
+		0,
+		0
 		)
 	</insert>
 
@@ -39,6 +41,14 @@
 
 	<update id="count">
 		update board set count = count+1
+		where bno=#{bno}
+	</update>
+	<update id="acount">
+		update board set acount = acount+1
+		where bno=#{bno}
+	</update>
+	<update id="ucount">
+		update board set ucount = ucount+1
 		where bno=#{bno}
 	</update>
 </mapper>

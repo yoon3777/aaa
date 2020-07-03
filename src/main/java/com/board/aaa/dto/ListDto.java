@@ -11,6 +11,8 @@ public class ListDto {
     private String content;
     private String writer;
     private Date regdate;
+    private int ucount;
+    private int acount;
     private int count;
     private String image;
 }

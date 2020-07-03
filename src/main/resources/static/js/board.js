@@ -1,4 +1,24 @@
 $(document).ready(function () {
+    //로그인
+    $('#btn-login').on('click', function(){
+        var data = {
+            userid : $('#userid').val(),
+            password : $('#password').val()
+        };
+        console.log(data);
+
+        $.ajax({
+            type:'POST',
+            url:'/rest/login',
+            data : data
+        }).done(function (data) {
+            alert("로그인 성공");
+            window.location.href = "/list";
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        })
+    });
+
     //게시글 등록
    $('#btn-write').on('click', function () {
 
@@ -10,22 +30,40 @@ $(document).ready(function () {
        $.ajax({
            type : 'POST',
            url : '/rest/write',
-           enctype: 'multipart/form-data',
+           // enctype: 'multipart/form-data',
            processData: false,
            contentType: false,
            cache: false,
            data : data
-       }).done(function (data) {
-           if(data == 0) {
+       }).done(function () {
+           // if(data == 0) {
                alert("게시글 등록 완료");
-               window.location.href = "/";
-           }else {
-               alert("제목 중복입니다.");
-           }
+              window.location.href = "/list";
+           // }else {
+           //     alert("제목 중복입니다.");
+           // }
        }).fail(function (error) {
            alert(JSON.stringify(error));
        });
    });
+   
+   //추천
+    $('#c').on('click', function () {
+        var data = {
+            userid : $('#userid').val(),
+        };
+
+        $.ajax({
+            tpye:'POST',
+            url: '/rest/c',
+            data : data
+        }).done(function () {
+            alert("추천했습니다.");
+            window.location.replace(document.location.href);
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        })
+    })
 
    //수정화면 수정버튼클릭
    $('#btn-update').on('click', function () {
@@ -42,7 +80,7 @@ $(document).ready(function () {
            data : data
        }).done(function () {
            alert("게시글 수정 완료");
-           window.location.href = "/";
+           window.location.href = "/list";
        }).fail(function (error) {
            alert(JSON.stringify(error));
        });
@@ -61,7 +99,7 @@ $(document).ready(function () {
             data : data
         }).done(function () {
             alert("게시글 삭제 완료");
-            window.location.href = "/";
+            window.location.href = "/list";
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
