@@ -7,7 +7,9 @@ import com.board.aaa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,6 +63,32 @@ public class BoardRestController {
         System.out.println("작성 Dto : " + writeDto.toString());
 //        return n;
     }
+
+
+    //추천하기-일반
+    @PutMapping("/rest/r")
+    public void ucount(ReDto reDto) throws Exception {
+        System.out.println("일반 추천 : " + reDto.toString());
+        if(reDto.getTypeName().equals("일반")){
+            boardService.ucount(reDto);
+        }else{
+            boardService.acount(reDto);
+        }
+    }
+
+//    //추천하기-전문가
+//    @PutMapping("/rest/ru")
+//    public void ucount(@PathVariable String bno) throws Exception {
+//        System.out.println("일반 추천 : " + bno);
+//        boardService.acount(bno);
+//    }
+//
+//    //추천하기-전문가
+//    @PutMapping("/rest/ra")
+//    public void acount(@PathVariable String bno) throws Exception {
+//        System.out.println("전문가 추천 : " + bno);
+//        boardService.acount(bno);
+//    }
 
     //게시글 수정
     @PostMapping("/rest/update")

@@ -37,7 +37,7 @@ public class BoardController {
     @GetMapping("/user/list")
     public String userList(Model model, HttpSession httpSession) throws Exception{
         model.addAttribute("userList", userService.userList());
-        model.addAttribute("user", httpSession.getAttribute("user"));
+        model.addAttribute("userInfo",httpSession.getAttribute("userInfo"));
         return "/userlist";
     }
 
@@ -52,20 +52,19 @@ public class BoardController {
 
     //게시글 등록
     @GetMapping("/write")
-    public String write(HttpServletRequest request, HttpServletResponse response,
-                        Model model, HttpSession httpSession) throws Exception {
-        model.addAttribute("user", httpSession.getAttribute("user"));
+    public String write(Model model, HttpSession httpSession) throws Exception {
+        model.addAttribute("userInfo",httpSession.getAttribute("userInfo"));
         return "/write";
     }
     //상세페이지 조회 & 조회수 증가
     @GetMapping("/detail/{bno}")
-    public String detail(@PathVariable String bno, HttpServletRequest request, HttpServletResponse response,
-                         Model model, HttpSession httpSession) throws Exception {
+    public String detail(@PathVariable String bno, Model model, HttpSession httpSession) throws Exception {
         model.addAttribute("boardList", boardService.getBoard(bno));
-        model.addAttribute("user", httpSession.getAttribute("user"));
+        model.addAttribute("userInfo",httpSession.getAttribute("userInfo"));
         boardService.count(bno);
 //        model.addAttribute("replyList", replyService.selectReply(bno));
-        System.out.println("이미지: " + boardService.getBoard(bno).toString());
+        System.out.println("게시글정보 : " + boardService.getBoard(bno).toString());
+        System.out.println("유저정보 :" + httpSession.getAttribute("userInfo").toString());
 
         return "/detail";
     }
@@ -74,7 +73,7 @@ public class BoardController {
     public String update(@PathVariable String bno, HttpServletRequest request, HttpServletResponse response,
                          Model model, HttpSession httpSession) throws Exception {
         model.addAttribute("boardList", boardService.getBoard(bno));
-        model.addAttribute("user", httpSession.getAttribute("user"));
+        model.addAttribute("userInfo",httpSession.getAttribute("userInfo"));
         return "/update";
     }
 

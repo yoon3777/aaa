@@ -50,4 +50,22 @@ public class BoardService {
         return result;
     }
 
+    //추천하기 - 일반
+        public void ucount(ReDto reDto) throws Exception{
+            boardMapper.ucount(reDto);
+        }
+    //추천하기 - 전문가
+        public void acount(ReDto reDto) throws Exception{
+            boardMapper.acount(reDto);
+        }
+
+//    //추천하기 - 일반
+//    public void ucount(String bno) throws Exception{
+//        boardMapper.ucount(bno);
+//    }
+//    //추천하기 - 전문가
+//    public void acount(String bno) throws Exception{
+//        boardMapper.acount(bno);
+//    }
+
 }

@@ -20,4 +20,13 @@ public interface BoardMapper {
     public void delete(DeleteDto deleteDto) throws Exception;
     //제목 중복 체크
     public int check(CheckDto checkDto) throws Exception;
+    //추천하기 - 일반
+    public void ucount(ReDto reDto) throws Exception;
+    //추천하기 - 전문가
+    public void acount(ReDto reDto) throws Exception;
+
+//    //추천하기 - 일반
+//    public void ucount(String bno) throws Exception;
+//    //추천하기 - 전문가
+//    public void acount(String bno) throws Exception;
 }

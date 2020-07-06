@@ -48,22 +48,61 @@ $(document).ready(function () {
    });
    
    //추천
-    $('#c').on('click', function () {
-        var data = {
-            userid : $('#userid').val(),
-        };
+    $('#r').on('click', function () {
+        // var typename = $('#typename').attr("value").toString();
+            var data = {
+                bno : $('#reBno').val(),
+                typeName : $('#reTypeName').val()
+            };
+                console.log(data);
+            $.ajax({
+                type:'put',
+                url: '/rest/r',
+                data : data
+            }).done(function () {
+                alert("추천했습니다.");
+                window.location.replace("/list");
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
 
-        $.ajax({
-            tpye:'POST',
-            url: '/rest/c',
-            data : data
-        }).done(function () {
-            alert("추천했습니다.");
-            window.location.replace(document.location.href);
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        })
-    })
+    });
+
+   //  //추천
+   //  $('#r').on('click', function () {
+   //       var typename = String($('#reTypeName').val());
+   //       console.log(typename);
+   //       if(typename=='일반'){
+   //           var data = {
+   //               bno : $('#reBno').val()
+   //           };
+   //           console.log(data);
+   //           $.ajax({
+   //               type:'put',
+   //               url: '/rest/ru',
+   //               data : data
+   //           }).done(function () {
+   //               alert("일반 추천했습니다.");
+   //               window.location.replace("/list");
+   //           }).fail(function (error) {
+   //               alert(JSON.stringify(error));
+   //           });
+   //       } else {
+   //           var data = {
+   //               bno : $('#reBno').val()
+   //           };
+   //           $.ajax({
+   //               type:'put',
+   //               url: '/rest/ra',
+   //               data : data
+   //           }).done(function () {
+   //               alert("전문가 추천했습니다.");
+   //               window.location.replace("/list");
+   //           }).fail(function (error) {
+   //               alert(JSON.stringify(error));
+   //           });
+   //       }
+   //  });
 
    //수정화면 수정버튼클릭
    $('#btn-update').on('click', function () {

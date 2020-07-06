@@ -1,6 +1,10 @@
 {{>layout/header}}
 <h1>게시글 상세페이지</h1>
 {{#boardList}}
+    {{#userInfo}}
+    <input type="hidden" id="reBno" value="{{bno}}">
+    <input type="hidden" id="reTypeName" value="{{typeName}}">
+    {{/userInfo}}
     <table calss="table table-horizontal" table-border>
         <thead class="thead-strong">
         <tr>
@@ -15,7 +19,7 @@
         </tr>
         </tbody>
     </table><br>
-    <button type="button" id="c" name="c">추천하기</button>
+    <button type="button" id="r" name="r" >추천하기</button>
     <button type="button" onclick="location.href='/list'">뒤로가기</button>
     {{/boardList}}
 <!--    <p>-->
