@@ -51,21 +51,14 @@ public class BoardService {
     }
 
     //추천하기 - 일반
-        public void ucount(ReDto reDto) throws Exception{
-            boardMapper.ucount(reDto);
+        public void ucount(String bno) throws Exception{
+            boardMapper.ucount(bno);
         }
     //추천하기 - 전문가
-        public void acount(ReDto reDto) throws Exception{
-            boardMapper.acount(reDto);
+        public void acount(String bno) throws Exception{
+            boardMapper.acount(bno);
         }
 
-//    //추천하기 - 일반
-//    public void ucount(String bno) throws Exception{
-//        boardMapper.ucount(bno);
-//    }
-//    //추천하기 - 전문가
-//    public void acount(String bno) throws Exception{
-//        boardMapper.acount(bno);
-//    }
+
 
 }

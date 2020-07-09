@@ -1,11 +1,13 @@
 {{>layout/header}}
 <h1>게시글 등록</h1>
+{{#userInfo}}
 <form id="writedata">
 제목<input type="text" id="title" name="title"><br>
 내용<textarea id="content" name="content"></textarea><br>
-작성자<input type="text" id="writer" name="writer"><br>
+작성자<input type="text" id="writer" name="writer" value="{{username}}"><br>
 <!--사진<input type="file" name="file" id="image">-->
 <!--   accept="image/*" -->
+{{/userInfo}}
 </form>
     <button type="button" id="btn-write">등록</button>
     <button type="button" onclick="location.href='/list'">취소</button>

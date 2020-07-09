@@ -65,15 +65,21 @@ public class BoardRestController {
     }
 
 
+//    //추천하기-일반
+//    @PutMapping("/rest/r")
+//    public void ucount(ReDto reDto) throws Exception {
+//        System.out.println("일반 추천 : " + reDto.toString());
+//        if(reDto.getTypeName().equals("일반")){
+//            boardService.ucount(reDto);
+//        }else{
+//            boardService.acount(reDto);
+//        }
+//    }
+
     //추천하기-일반
     @PutMapping("/rest/r")
-    public void ucount(ReDto reDto) throws Exception {
-        System.out.println("일반 추천 : " + reDto.toString());
-        if(reDto.getTypeName().equals("일반")){
-            boardService.ucount(reDto);
-        }else{
-            boardService.acount(reDto);
-        }
+    public void ucount(String bno) throws Exception {
+        boardService.count(bno);
     }
 
 //    //추천하기-전문가

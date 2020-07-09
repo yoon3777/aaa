@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class ReDto {
-    private String bno;
+    private String userid;
+    private String password;
+    private String username;
     private String typeName;
 }

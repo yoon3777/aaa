@@ -1,7 +1,7 @@
 {{>layout/header}}
 <h1>게시판 목록</h1>
 {{#userInfo}}
-    <p>{{userid}}님 안녕하세요</p><br>
+    <p>{{username}}님 안녕하세요</p><br>
 {{/userInfo}}
 <table calss="table table-horizontal" table-border>
     <thead class="thead-strong">
@@ -10,9 +10,9 @@
     <th>제목</th>
     <th>작성자</th>
     <th>작성일자</th>
-    <th>일반인 추천</th>
-    <th>전문가 추천</th>
-    <th>조회수</th>
+    <th>일반 조회수</th>
+    <th>전문가 조회수</th>
+    <th>추천수</th>
     </tr>
     </thead>
     <tbody id="tbody">

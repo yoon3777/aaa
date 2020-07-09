@@ -1,5 +1,6 @@
 package com.board.aaa.controller;
 
+import com.board.aaa.dto.ReDto;
 import com.board.aaa.dto.UserLoginDto;
 import com.board.aaa.service.BoardService;
 import com.board.aaa.service.ReplyService;
@@ -56,13 +57,23 @@ public class BoardController {
         model.addAttribute("userInfo",httpSession.getAttribute("userInfo"));
         return "/write";
     }
-    //상세페이지 조회 & 조회수 증가
+    //상세페이지 조회 & 추천수 증가
     @GetMapping("/detail/{bno}")
     public String detail(@PathVariable String bno, Model model, HttpSession httpSession) throws Exception {
-        model.addAttribute("boardList", boardService.getBoard(bno));
+//        ReDto reDto = httpSession.getAttribute("userInfo");
+        String a = httpSession.getAttribute("userInfo").toString();
+        System.out.println("제발좀 : " +  a.substring(61, 65) );
+//        userService.type(reDto);
         model.addAttribute("userInfo",httpSession.getAttribute("userInfo"));
-        boardService.count(bno);
-//        model.addAttribute("replyList", replyService.selectReply(bno));
+//        System.out.println("타입이름 : " + reDto.getTypeName());
+        if(a.substring(61,65).equals("True")){
+            model.addAttribute("boardList", boardService.getBoard(bno));
+            boardService.acount(bno);
+        }else{
+            model.addAttribute("boardList", boardService.getBoard(bno));
+            boardService.ucount(bno);
+        }
+////        model.addAttribute("replyList", replyService.selectReply(bno));
         System.out.println("게시글정보 : " + boardService.getBoard(bno).toString());
         System.out.println("유저정보 :" + httpSession.getAttribute("userInfo").toString());
 

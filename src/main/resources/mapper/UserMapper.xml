@@ -12,5 +12,10 @@
        from users
        where userid=#{userid} and password=#{password}
     </select>
+    <select id="type" resultType="com.board.aaa.dto.ReDto">
+		select *
+		from users
+		where userid=#{userid}
+	</select>
 
 </mapper>
